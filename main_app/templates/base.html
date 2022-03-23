@@ -38,9 +38,10 @@
              <li>
                <a class="dropdown-item {% if request.path == '/tag/react/' %}active{% endif %}" href="{{ request.scheme }}://{{ request.get_host }}/tag/react/">React</a>
              </li>
-           
-           </ul>
+            </ul>
          </li>
+
+         <a class="nav-link  text-white" href="{% url 'main_app:post_create' %}">Create Post</a>
          </ul>
         <form class="d-flex" action="/">
           <input class="form-control mr-3" type="search" value="{{request.GET.q}}" name="q" placeholder="Search" aria-label="Search">

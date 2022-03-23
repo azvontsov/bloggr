@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -6,6 +7,15 @@ from .forms import CommentForm, CustomUserCreationForm, CustomUserCreationForm2
 from taggit.models import Tag
 from django.db.models import Count
 from django.db.models import Q
+
+
+
+from django.views.generic import (CreateView)
+
+
+from django.urls import reverse_lazy
+from django.utils.text import slugify
+
 
 import uuid
 import boto3
@@ -16,13 +26,12 @@ from django.contrib.auth import logout
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'bloggr-phoenix'
 
-# Create your views here.
 
-def home(request):
-    return render(request,'home.html')
+# def home(request):
+#     return render(request,'home.html')
 
-def about(request):
-    return render(request, 'about.html')
+# def about(request):
+#     return render(request, 'about.html')
 
 def add_photo(request, post_id):
     
@@ -147,3 +156,11 @@ def reply_page(request):
             return redirect(post_url+'#'+str(reply.id))
 
     return redirect("/")
+
+
+
+class AddPostView(CreateView):
+    model = Post
+    template_name = 'main_app/post_form.html'
+    fields = '__all__'
+

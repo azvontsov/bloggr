@@ -48,7 +48,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     tags = TaggableManager()
-    status = models.CharField(max_length=10,choices=STATUS_CHOICES,default='draft')
+    status = models.CharField(max_length=10,choices=STATUS_CHOICES,default='published')
     class Meta:
         ordering = ('-publish',)
     
